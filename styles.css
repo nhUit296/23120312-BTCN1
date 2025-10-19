@@ -64,6 +64,57 @@
   background-color: #ffffff;
   padding: 0;
 }
+.news-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.news-header {
+  display: flex;
+  align-items: center;
+  padding: 8px 10px;
+  cursor: pointer;
+  background-color: #f8d5a3; /* Màu cam nhạt cho item thu gọn */
+  color: #543c1c;
+  border-top: 1px solid #e5a039;
+}
+
+.news-item:first-child .news-header {
+  border-top: none;
+}
+
+.news-item.expanded > .news-header { /*Phần tử có class=news-header là con trực tiếp của ptu có 2 class là "new-items" và "expanded"*/
+  background-color: #f0ad4e; /* Màu cam đậm cho item mở rộng */
+}
+
+.news-header h3 {
+  margin: 0;
+  font-size: 1.5em;
+  flex-grow: 1; /* Đẩy icon ra 2 bên */
+  text-align: center;
+  color: rgb(155, 153, 153);
+}
+
+.news-item.expanded .news-header h3 {
+  color: white;
+}
+
+.toggle-icon, .drag-handle {
+  font-size: 0.8em;
+}
+
+.drag-handle {
+  cursor: move;
+}
+
+.news-content {
+  display: none; /* Mặc định ẩn nội dung */
+  padding: 5px;
+  background-color: #fff;
+  color: rgb(104, 104, 253);
+  font-size: 0.9em;
+}
 
 .main {
   grid-area: main;
