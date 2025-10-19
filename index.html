@@ -72,7 +72,74 @@
           </li>
         </ul>
       </div>
-      <div class="main">MAIN</div>
+      <div class="main">
+        <div class="process-text-container">
+          <!-- Thanh Công Cụ Mới theo ý tưởng của bạn -->
+          <div class="process-text-toolbar">
+            <!-- Nhóm 1: Tiêu đề -->
+            <div class="toolbar-group toolbar-title-group">
+              <span class="title">Process Text</span>
+            </div>
+
+            <!-- Nhóm 2: Input và các nút Actions -->
+            <div class="toolbar-group toolbar-actions-group">
+              <input
+                id="pattern-input"
+                class="search-input"
+                type="text"
+                placeholder="Enter text here"
+              />
+              <button class="btn" id="highlight-btn">Highlight</button>
+              <button class="btn" id="delete-btn">Delete</button>
+              <button class="btn" id="reset-btn">Reset</button>
+            </div>
+
+            <!-- Nhóm 3: Các tùy chọn Style (Đã có Popover) -->
+            <div class="toolbar-group toolbar-style-group">
+              <span class="sample-text-label">SampleText</span>
+              <input type="color" id="text-color-input" value="#0000FF" title="Màu chữ">
+              <button id="style-settings-btn" class="icon-btn" title="Tùy chọn định dạng">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                  <path d="M.102 2.223A3.004 3.004 0 0 0 3.78 5.897l6.341 6.342a3 3 0 1 0-1.414-1.414L2.362 4.484A3.004 3.004 0 0 0 .102 2.223zM5.528 4.187l.515.515a2.5 2.5 0 0 1-1.414 1.414l-.515-.515a2.5 2.5 0 0 1 1.414-1.414z"/>
+                </svg>
+              </button>
+              <!-- Popover chứa các tùy chọn ẩn-->
+              <div id="style-popover" class="style-popover">
+                <label><input type="checkbox" id="bold-cb"> Bold</label>
+                  <label><input type="checkbox" id="italic-cb"> Italic</label>
+                  <label><input type="checkbox" id="underline-cb"> Underline</label>
+                  <label class="popover-color-label">
+                      Background
+                      <input type="color" id="bg-color-input" value="#FFFF00">
+                  </label>
+              </div>
+            </div>
+          </div>
+            <!-- Vùng Nội Dung (Không thay đổi) -->
+          <div class="process-text-content" id="process-text">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa
+            ratione dolorum, sunt deleniti laborum asperiores molestias!
+            Provident cumque amet, quod cupiditate, ut animi sequi voluptate
+            numquam, possimus quo quisquam minima. Lorem ipsum dolor sit amet
+            consectetur, adipisicing elit. Tempora distinctio, expedita nostrum
+            natus culpa ipsa veritatis labore incidunt, beatae quibusdam maiores
+            dolorum. Quaerat provident pariatur aliquam earum excepturi ratione
+            fugit? Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+            Tempora odit doloribus rem. Tempora ullam id porro, exercitationem
+            fuga nihil minus eveniet. Cum neque, eveniet hic repellat doloremque
+            sapiente a nihil. Lorem ipsum dolor sit amet consectetur adipisicing
+            elit. Id, vel, nulla distinctio numquam quae praesentium optio velit
+            quo sapiente quidem cumque iure ex aperiam debitis error fuga
+            voluptates. Maiores, sapiente?
+          </div>
+          </div>
+          <div >
+
+          </div>
+
+          </div>
+        </div>
+      </div>
       <div class="footer">
         <div class="copyright">Copyright © Thạch Như</div>
         <nav class="footer-nav">

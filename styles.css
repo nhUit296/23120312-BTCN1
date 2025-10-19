@@ -7,8 +7,10 @@
     "side   main"
     "footer footer";
   grid-template-columns: 256px 1fr;
-  grid-template-rows: 66px auto 33px;
+  grid-template-rows: 61px auto 33px;
   min-height: 100vh;
+  column-gap: 10px;
+  row-gap: 5px
 }
 .header {
   grid-area: header;
@@ -16,19 +18,18 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-bottom: 5px;
   border-bottom: rgb(98, 98, 192) 1px solid;
 }
 
 .header header {
   width: 100%;
-  flex: 10;
   display: flex;
   align-items: center;
   justify-content: center;
   border-radius: 5px;
   background-color: rgb(80, 80, 253);
   color: rgb(255, 255, 255);
+  font-size: 25px;
 }
 
 .header nav {
@@ -118,10 +119,10 @@
 
 .main {
   grid-area: main;
-  background-color: lightgreen;
-  padding: 10px;
-  align-content: center;
+  background-color: white
 }
+
+
 .footer {
   grid-area: footer;
   background-color: #fcdeb4;
