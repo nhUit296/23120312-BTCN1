@@ -14,6 +14,7 @@ $(document).ready(function () {
     // Thêm/xóa class 'expanded' trên 'li.news-item'
     newsItem.toggleClass("expanded");
 
+    // Cập nhật icon dựa trên trạng thái hiện tại
     // Kiểm tra xem item có class 'expanded' không để đổi icon
     if (newsItem.hasClass("expanded")) {
       toggleIcon.text("▼"); // Nếu đang mở, hiện icon down
