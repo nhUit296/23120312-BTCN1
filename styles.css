@@ -1,0 +1,36 @@
+.container {
+  max-width: 1280px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-areas:
+    "header header"
+    "side   main"
+    "footer footer";
+  grid-template-columns: 256px 1fr;
+  grid-template-rows: 66px auto 33px;
+  min-height: 100vh;
+}
+.header {
+  grid-area: header;
+  background-color: rgb(112, 112, 238);
+  padding: 10px;
+  align-content: center;
+}
+.side {
+  grid-area: side;
+  background-color: orange;
+  padding: 10px;
+  align-content: center;
+}
+.main {
+  grid-area: main;
+  background-color: lightgreen;
+  padding: 10px;
+  align-content: center;
+}
+.footer {
+  grid-area: footer;
+  background-color: burlywood;
+  padding: 10px;
+  align-content: center;
+}
