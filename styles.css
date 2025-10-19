@@ -16,6 +16,8 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-bottom: 5px;
+  border-bottom: rgb(98, 98, 192) 1px solid;
 }
 
 .header header {
@@ -59,10 +61,10 @@
 } 
 .side {
   grid-area: side;
-  background-color: orange;
-  padding: 10px;
-  align-content: center;
+  background-color: #ffffff;
+  padding: 0;
 }
+
 .main {
   grid-area: main;
   background-color: lightgreen;
@@ -71,7 +73,7 @@
 }
 .footer {
   grid-area: footer;
-  background-color: #f8dcb4;
+  background-color: #fcdeb4;
   border-radius: 2px;
   border: orange 1px solid;
   padding: 10px;
