@@ -97,25 +97,44 @@
             <!-- Nhóm 3: Các tùy chọn Style (Đã có Popover) -->
             <div class="toolbar-group toolbar-style-group">
               <span class="sample-text-label">SampleText</span>
-              <input type="color" id="text-color-input" value="#0000FF" title="Màu chữ">
-              <button id="style-settings-btn" class="icon-btn" title="Tùy chọn định dạng">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
-                  <path d="M.102 2.223A3.004 3.004 0 0 0 3.78 5.897l6.341 6.342a3 3 0 1 0-1.414-1.414L2.362 4.484A3.004 3.004 0 0 0 .102 2.223zM5.528 4.187l.515.515a2.5 2.5 0 0 1-1.414 1.414l-.515-.515a2.5 2.5 0 0 1 1.414-1.414z"/>
+              <input
+                type="color"
+                id="text-color-input"
+                value="#0000FF"
+                title="Màu chữ"
+              />
+              <button
+                id="style-settings-btn"
+                class="icon-btn"
+                title="Tùy chọn định dạng"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="16"
+                  height="16"
+                  fill="currentColor"
+                  viewBox="0 0 16 16"
+                >
+                  <path
+                    d="M.102 2.223A3.004 3.004 0 0 0 3.78 5.897l6.341 6.342a3 3 0 1 0-1.414-1.414L2.362 4.484A3.004 3.004 0 0 0 .102 2.223zM5.528 4.187l.515.515a2.5 2.5 0 0 1-1.414 1.414l-.515-.515a2.5 2.5 0 0 1 1.414-1.414z"
+                  />
                 </svg>
               </button>
               <!-- Popover chứa các tùy chọn ẩn-->
               <div id="style-popover" class="style-popover">
-                <label><input type="checkbox" id="bold-cb"> Bold</label>
-                  <label><input type="checkbox" id="italic-cb"> Italic</label>
-                  <label><input type="checkbox" id="underline-cb"> Underline</label>
-                  <label class="popover-color-label">
-                      Background
-                      <input type="color" id="bg-color-input" value="#FFFF00">
-                  </label>
+                <label><input type="checkbox" id="bold-cb" /> Bold</label>
+                <label><input type="checkbox" id="italic-cb" /> Italic</label>
+                <label
+                  ><input type="checkbox" id="underline-cb" /> Underline</label
+                >
+                <label class="popover-color-label">
+                  Background
+                  <input type="color" id="bg-color-input" value="#FFFF00" />
+                </label>
               </div>
             </div>
           </div>
-            <!-- Vùng Nội Dung (Không thay đổi) -->
+          <!-- Vùng Nội Dung (Không thay đổi) -->
           <div class="process-text-content" id="process-text">
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa
             ratione dolorum, sunt deleniti laborum asperiores molestias!
@@ -132,11 +151,31 @@
             quo sapiente quidem cumque iure ex aperiam debitis error fuga
             voluptates. Maiores, sapiente?
           </div>
-          </div>
-          <div >
+        </div>
 
+        <div class="drag-drop-container">
+          <div class="drag-drop-toolbar">
+            <span class="drag-drop-title">Drag & Drop</span>
+            <div class="add-new-controls">
+              <select name="animals" id="animal-select">
+                <option value="mouse">🐁</option>
+                <option value="buffalo">🐃</option>
+                <option value="tiger">🐅</option>
+                <option value="cat">🐈</option>
+                <option value="dragon">🐉</option>
+                <option value="snake">🐍</option>
+                <option value="horse">🐎</option>
+                <option value="goat">🐐</option>
+                <option value="monkey">🐒</option>
+                <option value="rooster">🐓</option>
+                <option value="dog">🐕</option>
+                <option value="pig">🐖</option>
+              </select>
+              <button id="btn-add-new" class="btn">Add New</button>
+            </div>
           </div>
-
+          <div class="drag-drop-grid" id="drag-drop-grid">
+            <!-- Các icon sẽ được thêm vào đây bằng JavaScript -->
           </div>
         </div>
       </div>

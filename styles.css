@@ -21,15 +21,29 @@
   border-bottom: rgb(98, 98, 192) 1px solid;
 }
 
+.btn {
+  background: linear-gradient(90deg, #6694f0, #7b9eff);
+  color: white;
+  font-weight: 500;
+  border: none;
+  border-radius: 9999px;
+  padding: 6px 16px;
+  cursor: pointer;
+  font-size: 14px;
+  box-shadow: 0 2px 4px rgba(91, 141, 239, 0.3);
+  transition: all 0.2s ease;
+}
+
 .header header {
   width: 100%;
   display: flex;
-  align-items: center;
+  /* align-items: center; */
+  min-height: 45px;
   justify-content: center;
   border-radius: 5px;
-  background-color: rgb(80, 80, 253);
+  background: linear-gradient(to bottom, #2278db, #8cc0f1);
   color: rgb(255, 255, 255);
-  font-size: 25px;
+  font-size: 20px;
 }
 
 .header nav {
@@ -37,7 +51,7 @@
   align-items: center;
   border-radius: 5px;
   position: relative;
-  bottom: 10px;
+  bottom: 20px;
 }
 
 .header nav ul {
@@ -59,7 +73,7 @@
   margin: 0;
   font-size: 1.2em;
   font-weight: bold;
-} 
+}
 .side {
   grid-area: side;
   background-color: #ffffff;
@@ -135,15 +149,13 @@
   justify-content: space-between;
   padding-left: 20px;
   padding-right: 20px;
-  background-color: rgb(87, 87, 238);
+  background: linear-gradient(to bottom, #f1f2f3, #0168c9);
   padding-bottom: 10px;
   padding-top: 10px;
   align-items: center;
 }
 
 .style-popover {
-  /* display: flex;
-  flex-direction: column; */
   display: none;
   position: absolute;
   background-color: #fff;
@@ -152,6 +164,9 @@
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
   padding: 10px;
   z-index: 1000;
+}
+.search-input {
+  min-height: 25px;
 }
 
 .title {
@@ -164,6 +179,38 @@
   padding: 20px;
   font-size: 25px;
 }
+
+/* .drag-drop-toolbar {
+  display: flex;
+  flex-direction: row;
+  margin-top: 10px;
+  padding-left: 20px;
+  padding-right: 20px;
+  background: linear-gradient(to bottom, #f1f2f3, #0168c9);
+  padding-bottom: 10px;
+  padding-top: 10px;
+  align-items: center;
+  border: 1px solid rgb(85, 84, 84);
+}
+
+.drag-drop-title {
+  font-weight: bold;
+  font-size: 20px;
+  color: white;
+  flex: 1;
+}
+
+.add-new-controls {
+  display: flex;
+  gap: 10px;
+  flex: 1;
+}
+
+.drag-drop-grid {
+  display: flex;
+
+} */
+
 
 
 .footer {
