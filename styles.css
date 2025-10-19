@@ -180,7 +180,7 @@
   font-size: 25px;
 }
 
-/* .drag-drop-toolbar {
+.drag-drop-toolbar {
   display: flex;
   flex-direction: row;
   margin-top: 10px;
@@ -209,7 +209,7 @@
 .drag-drop-grid {
   display: flex;
 
-} */
+}
 
 
 
