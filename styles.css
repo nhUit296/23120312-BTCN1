@@ -29,6 +29,29 @@
   color: rgb(255, 255, 255);
 }
 
+.header nav {
+  background-color: #a9c8e8;
+  align-items: center;
+  border-radius: 5px;
+  position: relative;
+  bottom: 10px;
+}
+
+.header nav ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: inline-flex;
+  gap: 50px
+}
+
+.header nav ul li a {
+  display: block;
+  padding: 5px 15px;
+  text-decoration: none;
+  color: rgb(46, 46, 247);
+}
+
 .header header h1 {
   margin: 0;
   font-size: 1.2em;
