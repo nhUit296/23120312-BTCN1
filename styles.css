@@ -79,6 +79,10 @@
   background-color: #ffffff;
   padding: 0;
 }
+.news-item.dragging {
+  opacity: 0.5; /* Làm mờ mục đang kéo */
+  border: 1px dashed #aaa; /* Thêm đường viền để dễ nhận biết */
+}
 .news-list {
   list-style: none;
   margin: 0;

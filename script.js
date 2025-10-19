@@ -1,4 +1,5 @@
 $(document).ready(function () {
+  // =========================== Sự kiện đóng mở ===============================
   // Lắng nghe sự kiện click trên mỗi '.news-header'
   $(".toggle-icon").on("click", function () {
     // Tìm 'li.news-item' cha gần nhất của header vừa được click
@@ -24,4 +25,84 @@ $(document).ready(function () {
       newsContent.css("display", "none"); // Sửa thành .css("display", "none")
     }
   });
+
+  // =========================== Kéo thả sắp xếp lại ===============================
+  let draggingItem = null; // Item gốc đang được kéo (jQuery object)
+  let shadow = null; // "Bóng" di chuyển theo chuột (jQuery object)
+  let placeholder = null; // Vùng trống giữ chỗ (jQuery object)
+  let offsetX = 0;
+  let offsetY = 0;
+
+  // Sử dụng event delegation cho các .drag-handle
+  $(".news-list").on("mousedown", ".drag-handle", function (e) {
+    e.preventDefault(); // Ngăn hành vi mặc định
+
+    draggingItem = $(this).closest(".news-item");
+
+    // 1. Tạo "bóng" (shadow) di chuyển theo chuột
+    shadow = draggingItem.clone().addClass("news-shadow").css({
+      position: "absolute",
+      width: draggingItem.outerWidth(), // Giữ nguyên chiều rộng
+      height: draggingItem.outerHeight(), // Giữ nguyên chiều cao
+      zIndex: 1000,
+      opacity: 0.4,
+    });
+
+    const originalOffset = draggingItem.offset();
+    offsetX = e.pageX - originalOffset.left; // Tính toán khoảng cách chuột so với góc trái trên của item
+    offsetY = e.pageY - originalOffset.top; // Tính toán khoảng cách chuột so với góc trái trên của item
+
+    shadow.css({
+      top: e.pageY - offsetY, // Đặt vị trí ban đầu của shadow
+      left: e.pageX - offsetX,
+    });
+
+    $("body").append(shadow); // Thêm shadow vào body
+
+    // 3. Gán sự kiện di chuyển và thả chuột
+    $(document).on("mousemove.dragNews", onMouseMove);
+    $(document).on("mouseup.dragNews", onMouseUp);
+  });
+
+  function onMouseMove(e) {
+    // Cập nhật vị trí của shadow theo chuột
+    if (shadow) {
+      shadow.css({
+        top: e.pageY - offsetY,
+        left: e.pageX - offsetX,
+      });
+    }
+  }
+
+  function onMouseUp(e) {
+    const targetElement = getElementUnderMouse(e);
+    if (targetElement) {
+      // Nếu tìm thấy phần tử dưới chuột
+      const targetItem = $(targetElement).closest(".news-item"); // Tìm .news-item cha gần nhất
+      if (targetItem.length > 0 && !targetItem.is(draggingItem)) {
+        // Nếu tìm thấy và không phải là item đang kéo
+        const targetRect = targetItem[0].getBoundingClientRect(); // Lấy kích thước và vị trí của item mục tiêu
+        targetItem.before(draggingItem); // Chèn draggingItem trước item mục tiêu
+      }
+    }
+    // Dọn dẹp
+    if (shadow) {
+      shadow.remove();
+    }
+
+    draggingItem = null;
+    shadow = null;
+
+    // Gỡ bỏ sự kiện
+    $(document).off("mousemove.dragNews mouseup.dragNews");
+  }
+
+  function getElementUnderMouse(e) {
+    if (shadow) shadow.hide();
+    const element = document.elementFromPoint(e.clientX, e.clientY);
+    if (shadow) shadow.show();
+    return element;
+  }
+
+  //============================
 });
