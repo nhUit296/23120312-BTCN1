@@ -56,7 +56,7 @@
   margin: 0;
   font-size: 1.2em;
   font-weight: bold;
-}
+} 
 .side {
   grid-area: side;
   background-color: orange;
