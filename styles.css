@@ -308,6 +308,25 @@ h3 {
   color: #fdaa36; /* Màu cam nhạt cho item thu gọn */
 }
 
+.icon-btn {
+  /* 1. Kích thước và căn chỉnh */
+  display: inline-flex;       /* Giúp căn giữa icon dễ dàng */
+  justify-content: center;   /* Căn icon theo chiều ngang */
+  align-items: center;       /* Căn icon theo chiều dọc */
+  padding: 8px;              /* Tạo khoảng trống xung quanh icon */
+
+  /* 3. Tạo nền Gradient và bo góc */
+  background-image: linear-gradient(to bottom, #6a93cb, #4b6cb7);
+  border-radius: 20px;        /* Bo tròn góc */
+  
+  /* 4. Thêm viền và bóng đổ để tạo chiều sâu */
+  border: 1px solid #42619a; /* Viền màu xanh đậm hơn một chút */
+  box-shadow: 0 2px 3px rgba(0, 0, 0, 0.2); /* Đổ bóng nhẹ */
+  
+  /* 5. Định dạng cho icon SVG bên trong */
+  color: white;
+}
+
 
 /* ================================ Xử lý responsive cho màn hình 576px trở xuống ====================================== */
 @media (max-width: 576px) {
