@@ -272,7 +272,7 @@ $(document).ready(function () {
         targetItem.before(animalPlaceholder);
       }
     } else if ($(targetElement).is(grid)) {
-      // Nếu di chuột vào vùng trống của grid, đặt placeholder ở cuối
+      // Nếu di chuột vào vùng trống của grid, đặt placeholder ở cuối.
       grid.append(animalPlaceholder);
     }
   }
