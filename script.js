@@ -239,6 +239,17 @@ $(document).ready(function () {
         left: e.pageX - animalOffsetX,
       });
     }
+
+    const targetElement = getElementUnderMouse(e, animalShadow);
+    const targetItem = $(targetElement).closest(".animal-item");
+    const grid = $("#drag-drop-grid");
+
+    if (targetItem.length > 0 && !targetItem.is(draggingAnimal)) {
+      targetItem.before(animalPlaceholder);
+    } else if ($(targetElement).is(grid)) {
+      // Nếu di chuột vào vùng trống của grid, đặt placeholder ở cuối
+      grid.append(animalPlaceholder);
+    }
   }
 
   function onAnimalMouseUp() {
