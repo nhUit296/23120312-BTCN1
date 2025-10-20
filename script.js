@@ -301,16 +301,16 @@ $(document).ready(function () {
 
   // =================== Đồng bộ trạng thái Nav và Footer Menu ===================
   $(document).ready(function () {
-    const $headerNavItems = $(".header nav li");
+    const $headerNavItems = $(".header nav li"); // Lấy các mục trong header nav
     const $footerNavItems = $(".footer-nav li");
 
     // Hàm để xử lý việc highlight
     function syncHighlight(index, addClass) {
       if (addClass) {
-        $headerNavItems.eq(index).find("a").addClass("active");
+        $headerNavItems.eq(index).find("a").addClass("active"); // Thêm class cho header tại index
         $footerNavItems.eq(index).find("a").addClass("active");
       } else {
-        $headerNavItems.find("a").removeClass("active");
+        $headerNavItems.find("a").removeClass("active"); // Xóa tất cả class trong header
         $footerNavItems.find("a").removeClass("active");
       }
     }
@@ -318,7 +318,7 @@ $(document).ready(function () {
     // 1. Mặc định highlight "Menu 1" khi tải trang
     syncHighlight(0, true);
 
-    // 2. Xử lý sự kiện CLICK (Giữ nguyên)
+    // 2. Xử lý sự kiện CLICK (áp dụng cho cả header và footer)
     $headerNavItems.add($footerNavItems).on("click", function (e) {
       e.preventDefault();
       const index = $(this).index();

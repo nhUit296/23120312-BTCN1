@@ -307,3 +307,52 @@ h3 {
   text-align: center;
   color: #fdaa36; /* Màu cam nhạt cho item thu gọn */
 }
+
+
+/* ================================ Xử lý responsive cho màn hình 576px trở xuống ====================================== */
+@media (max-width: 576px) {
+  .container {
+    grid-template-areas:
+      "header"
+      "side"
+      "main"
+      "footer";
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+  }
+  .header nav ul li a{
+    font-size: 13px;
+  }
+  .header nav {
+  background-color: #a9c8e8;
+  align-items: center;
+  border-radius: 5px;
+  position: relative;
+  bottom: 10px;
+  }
+  .process-text-toolbar {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  }
+  .style-popover {
+  display: none;
+  position: absolute;
+  background-color: rgb(155, 155, 233);
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  padding: 10px;
+  z-index: 1000;
+  top: 120px;
+  right: 110px;
+  }
+  .box {
+    width: 5em;
+    height: 3em;  
+    font-size: 1.5em;
+  }
+.footer-nav ul li a {
+  font-size: 13px;
+}
+}
