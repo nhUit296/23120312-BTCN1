@@ -114,7 +114,7 @@ $(document).ready(function () {
     }
   });
 
-  // ============================= Xử lý Sample Text =======================
+  // ============================= Xử lý Sample Text ========================
   const $sampleTextLabel = $("#sample-text-label");
   const styleInputs =
     "#text-color-input, #bg-color-input, #bold-cb, #italic-cb, #underline-cb"; // Chọn tất cả các input liên quan đến style
