@@ -103,6 +103,30 @@ $(document).ready(function () {
     if (shadow) shadow.show();
     return element;
   }
+  // =========================== Hiển thị popover ===============================
+  $("#style-settings-btn").on("click", function () {
+    const popover = $(".style-popover");
+    if (popover.css("display") === "none") {
+      popover.css("display", "flex");
+      popover.css("flex-direction", "column");
+    } else {
+      popover.css("display", "none");
+    }
+  });
 
-  //============================ Xử lý Sample Text =======================
+  // ============================= Xử lý Sample Text =======================
+  const $sampleTextLabel = $("#sample-text-label");
+  const styleInputs =
+    "#text-color-input, #bg-color-input, #bold-cb, #italic-cb, #underline-cb"; // Chọn tất cả các input liên quan đến style
+  function applySampleStyles() {
+    $sampleTextLabel.css({
+      color: $("#text-color-input").val(),
+      backgroundColor: $("#bg-color-input").val(),
+      fontWeight: $("#bold-cb").is(":checked") ? "bold" : "normal",
+      fontStyle: $("#italic-cb").is(":checked") ? "italic" : "normal",
+      textDecoration: $("#underline-cb").is(":checked") ? "underline" : "none",
+    });
+  }
+  $(styleInputs).on("input change", applySampleStyles);
+  applySampleStyles(); // Áp dụng lần đầu
 });
