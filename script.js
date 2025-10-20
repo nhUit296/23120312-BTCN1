@@ -298,4 +298,57 @@ $(document).ready(function () {
 
     $(document).off(".dragAnimal");
   }
+
+  // =================== Đồng bộ trạng thái Nav và Footer Menu ===================
+  $(document).ready(function () {
+    const $headerNavItems = $(".header nav li");
+    const $footerNavItems = $(".footer-nav li");
+
+    // Hàm để xử lý việc highlight
+    function syncHighlight(index, addClass) {
+      if (addClass) {
+        $headerNavItems.eq(index).find("a").addClass("active");
+        $footerNavItems.eq(index).find("a").addClass("active");
+      } else {
+        $headerNavItems.find("a").removeClass("active");
+        $footerNavItems.find("a").removeClass("active");
+      }
+    }
+
+    // 1. Mặc định highlight "Menu 1" khi tải trang
+    syncHighlight(0, true);
+
+    // 2. Xử lý sự kiện CLICK (Giữ nguyên)
+    $headerNavItems.add($footerNavItems).on("click", function (e) {
+      e.preventDefault();
+      const index = $(this).index();
+      syncHighlight(null, false);
+      syncHighlight(index, true);
+    });
+
+    // 3. XỬ LÝ SỰ KIỆN HOVER (ĐÃ SỬA LẠI)
+    // Khi hover vào header nav
+    $headerNavItems.on("mouseenter", function () {
+      const index = $(this).index();
+      // Thêm class highlight tạm thời cho item tương ứng ở footer
+      $footerNavItems.eq(index).find("a").addClass("sync-hover");
+    });
+    $headerNavItems.on("mouseleave", function () {
+      const index = $(this).index();
+      // Xóa class highlight tạm thời khỏi item tương ứng ở footer
+      $footerNavItems.eq(index).find("a").removeClass("sync-hover");
+    });
+
+    // Khi hover vào footer nav
+    $footerNavItems.on("mouseenter", function () {
+      const index = $(this).index();
+      // Thêm class highlight tạm thời cho item tương ứng ở header
+      $headerNavItems.eq(index).find("a").addClass("sync-hover");
+    });
+    $footerNavItems.on("mouseleave", function () {
+      const index = $(this).index();
+      // Xóa class highlight tạm thời khỏi item tương ứng ở header
+      $headerNavItems.eq(index).find("a").removeClass("sync-hover");
+    });
+  });
 });

@@ -21,6 +21,19 @@
   border-bottom: rgb(98, 98, 192) 1px solid;
 }
 
+.header nav ul li a:hover,
+.header nav ul li a.active,
+.header nav ul li a.sync-hover {
+  color: #f8b422; 
+}
+
+.footer nav ul li a:hover,
+.footer-nav ul li a.active,
+.footer-nav ul li a.sync-hover {
+  color: white;
+  background-color: #e5a039;
+}
+
 .btn {
   background: linear-gradient(90deg, #6694f0, #7b9eff);
   color: white;
