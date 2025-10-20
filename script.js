@@ -27,6 +27,7 @@ $(document).ready(function () {
   });
 
   // =========================== Kéo thả sắp xếp lại ===============================
+  // =========================== Kéo thả sắp xếp lại ===============================
   let draggingItem = null; // Item gốc đang được kéo (jQuery object)
   let shadow = null; // "Bóng" di chuyển theo chuột (jQuery object)
   let placeholder = null; // Vùng trống giữ chỗ (jQuery object)
@@ -103,6 +104,7 @@ $(document).ready(function () {
     if (shadow) shadow.show();
     return element;
   }
+
   // =========================== Hiển thị popover ===============================
   $("#style-settings-btn").on("click", function () {
     const popover = $(".style-popover");
@@ -182,7 +184,7 @@ $(document).ready(function () {
   $("#btn-add-new").on("click", function () {
     const selected = $("#animal-select option:selected");
     // Tạo item mới chỉ chứa ký tự emoji
-    const newItemHTML = `<div style="display: flex; flex-direction: column; align-items: center;">
+    const newItemHTML = `<div style="display: flex; flex-direction: column; align-items: center;" class="animal-item">
       <div class="box bg1" data-animal="${selected.val()}">
         ${selected.text()}
       </div>
@@ -190,6 +192,88 @@ $(document).ready(function () {
     </div>
       `;
     $("#drag-drop-grid").append(newItemHTML);
-    initDragAndDrop(newItemHTML);
   });
+
+  // Kéo thả để sắp xếp các ANIMAL
+  let draggingAnimal = null;
+  let animalShadow = null;
+  let animalPlaceholder = null;
+  let animalOffsetX = 0;
+  let animalOffsetY = 0;
+
+  $("#drag-drop-grid").on("mousedown", ".animal-item", function (e) {
+    e.preventDefault();
+    draggingAnimal = $(this);
+
+    const originalOffset = draggingAnimal.offset();
+    animalOffsetX = e.pageX - originalOffset.left;
+    animalOffsetY = e.pageY - originalOffset.top;
+
+    animalShadow = draggingAnimal
+      .clone()
+      .addClass("animal-shadow")
+      .css({
+        position: "absolute",
+        top: e.pageY - animalOffsetY,
+        left: e.pageX - animalOffsetX,
+        width: draggingAnimal.outerWidth(),
+        height: draggingAnimal.outerHeight(),
+        pointerEvents: "none",
+        zIndex: 1000,
+      });
+    $("body").append(animalShadow);
+
+    animalPlaceholder = $("<div></div>").addClass("animal-placeholder").css({
+      width: draggingAnimal.outerWidth(),
+      height: draggingAnimal.outerHeight(),
+    });
+    draggingAnimal.after(animalPlaceholder);
+    draggingAnimal.hide();
+
+    $(document).on("mousemove.dragAnimal", onAnimalMouseMove);
+    $(document).on("mouseup.dragAnimal", onAnimalMouseUp);
+  });
+
+  function onAnimalMouseMove(e) {
+    if (animalShadow) {
+      animalShadow.css({
+        top: e.pageY - animalOffsetY,
+        left: e.pageX - animalOffsetX,
+      });
+    }
+
+    const targetElement = getElementUnderMouse(e, animalShadow);
+    const targetItem = $(targetElement).closest(".animal-item");
+    const grid = $("#drag-drop-grid");
+
+    if (targetItem.length > 0 && !targetItem.is(draggingAnimal)) {
+      targetItem.before(animalPlaceholder);
+    } else if ($(targetElement).is(grid)) {
+      // Nếu di chuột vào vùng trống của grid, đặt placeholder ở cuối
+      grid.append(animalPlaceholder);
+    }
+  }
+
+  function onAnimalMouseUp() {
+    if (draggingAnimal && animalPlaceholder) {
+      animalPlaceholder.replaceWith(draggingAnimal);
+      draggingAnimal.show();
+    }
+
+    if (animalShadow) animalShadow.remove();
+
+    draggingAnimal = null;
+    animalShadow = null;
+    animalPlaceholder = null;
+
+    $(document).off(".dragAnimal");
+  }
+
+  // Hàm helper để tìm phần tử dưới con trỏ chuột
+  function getElementUnderMouse(e, elementToHide) {
+    if (elementToHide) elementToHide.hide();
+    const element = document.elementFromPoint(e.clientX, e.clientY);
+    if (elementToHide) elementToHide.show();
+    return element;
+  }
 });
