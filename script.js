@@ -129,4 +129,36 @@ $(document).ready(function () {
   }
   $(styleInputs).on("input change", applySampleStyles);
   applySampleStyles(); // Áp dụng lần đầu
+
+  // ============================= Xử lý highlight ========================
+  const $processText = $("#process-text");
+  const originalTextContent = $processText.html();
+
+  function applyHighlightStyles() {
+    $(".highlighted-text").css({
+      color: $("#text-color-input").val(),
+      backgroundColor: $("#bg-color-input").val(),
+      fontWeight: $("#bold-cb").is(":checked") ? "bold" : "normal",
+      fontStyle: $("#italic-cb").is(":checked") ? "italic" : "normal",
+      textDecoration: $("#underline-cb").is(":checked") ? "underline" : "none",
+    });
+  }
+
+  $("#highlight-btn").on("click", function () {
+    $processText.html(originalTextContent);
+    const searchTerm = $("#pattern-input").val();
+    if (!searchTerm) return;
+
+    try {
+      const regex = new RegExp(searchTerm, "gi");
+      const newText = originalTextContent.replace(
+        regex,
+        (match) => `<span class="highlighted-text">${match}</span>`
+      );
+      $processText.html(newText);
+      applyHighlightStyles();
+    } catch (e) {
+      alert("Biểu thức Regex không hợp lệ!");
+    }
+  });
 });
