@@ -161,4 +161,17 @@ $(document).ready(function () {
       alert("Biểu thức Regex không hợp lệ!");
     }
   });
+
+  // ============================== Xử lý delete ========================
+  $("#delete-btn").on("click", function () {
+    const searchTerm = $("#pattern-input").val();
+    if (!searchTerm) return;
+    try {
+      const regex = new RegExp(searchTerm, "gi");
+      const newText = $processText.html().replace(regex, "");
+      $processText.html(newText);
+    } catch (e) {
+      alert("Biểu thức Regex không hợp lệ!");
+    }
+  });
 });
