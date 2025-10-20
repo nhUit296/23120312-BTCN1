@@ -25,8 +25,6 @@ $(document).ready(function () {
       newsContent.css("display", "none"); // Sửa thành .css("display", "none")
     }
   });
-
-  // =========================== Kéo thả sắp xếp lại ===============================
   // =========================== Kéo thả sắp xếp lại ===============================
   let draggingItem = null; // Item gốc đang được kéo (jQuery object)
   let shadow = null; // "Bóng" di chuyển theo chuột (jQuery object)
@@ -241,24 +239,11 @@ $(document).ready(function () {
         left: e.pageX - animalOffsetX,
       });
     }
-
-    const targetElement = getElementUnderMouse(e, animalShadow);
-    const targetItem = $(targetElement).closest(".animal-item");
-    const grid = $("#drag-drop-grid");
-
-    if (targetItem.length > 0 && !targetItem.is(draggingAnimal)) {
-      targetItem.before(animalPlaceholder);
-    } else if ($(targetElement).is(grid)) {
-      // Nếu di chuột vào vùng trống của grid, đặt placeholder ở cuối
-      grid.append(animalPlaceholder);
-    }
   }
 
   function onAnimalMouseUp() {
-    if (draggingAnimal && animalPlaceholder) {
-      animalPlaceholder.replaceWith(draggingAnimal);
-      draggingAnimal.show();
-    }
+    animalPlaceholder.remove();
+    draggingAnimal.show();
 
     if (animalShadow) animalShadow.remove();
 
@@ -267,13 +252,5 @@ $(document).ready(function () {
     animalPlaceholder = null;
 
     $(document).off(".dragAnimal");
-  }
-
-  // Hàm helper để tìm phần tử dưới con trỏ chuột
-  function getElementUnderMouse(e, elementToHide) {
-    if (elementToHide) elementToHide.hide();
-    const element = document.elementFromPoint(e.clientX, e.clientY);
-    if (elementToHide) elementToHide.show();
-    return element;
   }
 });
