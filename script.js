@@ -227,6 +227,16 @@ $(document).ready(function () {
     });
     draggingAnimal.after(animalPlaceholder);
     draggingAnimal.hide();
+    // const imageBox = draggingAnimal.find(".box"); // Tìm phần tử chứa ảnh
+    // animalPlaceholder = $("<div></div>")
+    //   .addClass("animal-placeholder")
+    //   .css({
+    //     width: imageBox.outerWidth(), // Lấy chiều rộng của ảnh
+    //     height: imageBox.outerHeight(), // Lấy chiều cao của ảnh
+    //     margin: draggingAnimal.css("margin"), // Giữ lại margin để căn chỉnh đúng trong grid
+    //   });
+    // draggingAnimal.after(animalPlaceholder);
+    // draggingAnimal.hide();
 
     $(document).on("mousemove.dragAnimal", onAnimalMouseMove);
     $(document).on("mouseup.dragAnimal", onAnimalMouseUp);
@@ -245,7 +255,22 @@ $(document).ready(function () {
     const grid = $("#drag-drop-grid");
 
     if (targetItem.length > 0 && !targetItem.is(draggingAnimal)) {
-      targetItem.before(animalPlaceholder);
+      // Nếu tìm thấy và không phải là item đang kéo
+      const targetRect = targetItem[0].getBoundingClientRect(); // Lấy tọa độ của item mục tiêu
+
+      animalPlaceholder.css("border", "2px dashed #000"); // Hiển thị border cho placeholder
+      animalPlaceholder.css("border-radius", "10px");
+
+      // Xác định xem chuột đang ở nửa trên hay nửa dưới của item
+      const isAfter = e.clientY - targetRect.top > targetRect.height / 2;
+
+      if (isAfter) {
+        // Nếu chuột ở nửa dưới, chèn placeholder VÀO SAU item mục tiêu
+        targetItem.after(animalPlaceholder);
+      } else {
+        // Nếu chuột ở nửa trên, chèn VÀO TRƯỚC item mục tiêu
+        targetItem.before(animalPlaceholder);
+      }
     } else if ($(targetElement).is(grid)) {
       // Nếu di chuột vào vùng trống của grid, đặt placeholder ở cuối
       grid.append(animalPlaceholder);
@@ -253,8 +278,10 @@ $(document).ready(function () {
   }
 
   function onAnimalMouseUp() {
-    animalPlaceholder.remove();
-    draggingAnimal.show();
+    if (draggingAnimal && animalPlaceholder) {
+      animalPlaceholder.replaceWith(draggingAnimal);
+      draggingAnimal.show();
+    }
 
     if (animalShadow) animalShadow.remove();
 
