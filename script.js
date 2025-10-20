@@ -174,4 +174,9 @@ $(document).ready(function () {
       alert("Biểu thức Regex không hợp lệ!");
     }
   });
+
+  // ============================== Xử lý reset ==========================
+  $("#reset-btn").on("click", () => $processText.html(originalTextContent));
+
+  
 });
