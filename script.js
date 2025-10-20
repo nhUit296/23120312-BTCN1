@@ -130,7 +130,7 @@ $(document).ready(function () {
   $(styleInputs).on("input change", applySampleStyles);
   applySampleStyles(); // Áp dụng lần đầu
 
-  // ============================= Xử lý highlight ========================
+  // ============================= Xử lý highlight =========================
   const $processText = $("#process-text");
   const originalTextContent = $processText.html();
 
