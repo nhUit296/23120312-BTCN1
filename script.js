@@ -178,5 +178,17 @@ $(document).ready(function () {
   // ============================== Xử lý reset ==========================
   $("#reset-btn").on("click", () => $processText.html(originalTextContent));
 
-  
+  // ============================= Xử lý add ==========================
+  $("#btn-add-new").on("click", function () {
+    const selected = $("#animal-select option:selected");
+    // Tạo item mới chỉ chứa ký tự emoji
+    const newItemHTML = `<div style="display: flex; flex-direction: column; align-items: center;">
+      <div class="box bg1" data-animal="${selected.val()}">
+        ${selected.text()}
+      </div>
+      <p style="margin: 0">${selected.val()}</p>
+    </div>
+      `;
+    $("#drag-drop-grid").append(newItemHTML);
+  });
 });

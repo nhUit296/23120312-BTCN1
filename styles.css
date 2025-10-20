@@ -10,7 +10,7 @@
   grid-template-rows: 61px auto 33px;
   min-height: 100vh;
   column-gap: 10px;
-  row-gap: 5px
+  row-gap: 5px;
 }
 .header {
   grid-area: header;
@@ -59,7 +59,7 @@
   padding: 0;
   list-style: none;
   display: inline-flex;
-  gap: 50px
+  gap: 50px;
 }
 
 .header nav ul li a {
@@ -103,7 +103,8 @@
   border-top: none;
 }
 
-.news-item.expanded > .news-header { /*Phần tử có class=news-header là con trực tiếp của ptu có 2 class là "new-items" và "expanded"*/
+.news-item.expanded > .news-header {
+  /*Phần tử có class=news-header là con trực tiếp của ptu có 2 class là "new-items" và "expanded"*/
   background-color: #f0ad4e; /* Màu cam đậm cho item mở rộng */
 }
 
@@ -119,7 +120,8 @@
   color: white;
 }
 
-.toggle-icon, .drag-handle {
+.toggle-icon,
+.drag-handle {
   font-size: 0.8em;
 }
 
@@ -137,7 +139,10 @@
 
 .main {
   grid-area: main;
-  background-color: white
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  row-gap: 10px;
 }
 
 .process-text-container {
@@ -145,6 +150,7 @@
   flex-direction: column;
   border: 1px solid rgb(85, 84, 84);
   border-radius: 5px;
+  flex: 1;
 }
 
 .process-text-toolbar {
@@ -169,7 +175,7 @@
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
   padding: 10px;
   z-index: 1000;
-  top: 50px; 
+  top: 50px;
   right: -40px;
 }
 .search-input {
@@ -190,14 +196,12 @@
 .drag-drop-toolbar {
   display: flex;
   flex-direction: row;
-  margin-top: 10px;
   padding-left: 20px;
   padding-right: 20px;
   background: linear-gradient(to bottom, #f1f2f3, #0168c9);
   padding-bottom: 10px;
   padding-top: 10px;
   align-items: center;
-  border: 1px solid rgb(85, 84, 84);
 }
 
 .drag-drop-title {
@@ -212,9 +216,32 @@
   gap: 10px;
   flex: 1;
 }
-.drag-drop-grid {
+#drag-drop-grid {
   display: flex;
+  flex-wrap: wrap;
+  padding: 20px;
+  column-gap: 2px;
+}
+.drag-drop-container {
+  border: 1px solid rgb(85, 84, 84);
+  flex: 1;
+}
+.box {
+  width: 5em;
+  height: 3em;  
+  font-size: 2em;
+  line-height: 3.5em;
+  text-align: center;
+  border-radius: 10px;
+  box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.3);
+  display: inline-block;
+  margin: 5px;
+  user-select: none;
+  cursor: grab;
+}
 
+.bg1 {
+  background-color: #2403b9;
 }
 .footer {
   grid-area: footer;
@@ -235,11 +262,11 @@
   padding: 0;
   list-style: none;
   display: flex;
-  gap: 0;                 /* Bỏ gap để thêm border */
+  gap: 0; /* Bỏ gap để thêm border */
 }
 
 .footer-nav ul li {
-  padding: 0 10px;        /* Thêm padding hai bên */
+  padding: 0 10px; /* Thêm padding hai bên */
 }
 
 .footer-nav ul li:not(:last-child) {
