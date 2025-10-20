@@ -192,7 +192,7 @@ $(document).ready(function () {
     $("#drag-drop-grid").append(newItemHTML);
   });
 
-  // Kéo thả để sắp xếp các ANIMAL
+  // ================================= Kéo thả để sắp xếp các ANIMAL ==============================
   let draggingAnimal = null;
   let animalShadow = null;
   let animalPlaceholder = null;
@@ -221,22 +221,23 @@ $(document).ready(function () {
       });
     $("body").append(animalShadow);
 
-    animalPlaceholder = $("<div></div>").addClass("animal-placeholder").css({
-      width: draggingAnimal.outerWidth(),
-      height: draggingAnimal.outerHeight(),
-    });
-    draggingAnimal.after(animalPlaceholder);
-    draggingAnimal.hide();
-    // const imageBox = draggingAnimal.find(".box"); // Tìm phần tử chứa ảnh
-    // animalPlaceholder = $("<div></div>")
-    //   .addClass("animal-placeholder")
-    //   .css({
-    //     width: imageBox.outerWidth(), // Lấy chiều rộng của ảnh
-    //     height: imageBox.outerHeight(), // Lấy chiều cao của ảnh
-    //     margin: draggingAnimal.css("margin"), // Giữ lại margin để căn chỉnh đúng trong grid
-    //   });
+    // animalPlaceholder = $("<div></div>").addClass("animal-placeholder").css({
+    //   width: draggingAnimal.outerWidth(),
+    //   height: draggingAnimal.outerHeight(),
+    // });
     // draggingAnimal.after(animalPlaceholder);
     // draggingAnimal.hide();
+
+    const imageBox = draggingAnimal.find(".box"); // Tìm phần tử chứa ảnh
+    animalPlaceholder = $("<div></div>")
+      .addClass("animal-placeholder")
+      .css({
+        width: imageBox.outerWidth(), // Lấy chiều rộng của ảnh
+        height: imageBox.outerHeight(), // Lấy chiều cao của ảnh
+        margin: draggingAnimal.css("margin"), // Giữ lại margin để căn chỉnh đúng trong grid
+      });
+    draggingAnimal.after(animalPlaceholder);
+    draggingAnimal.hide();
 
     $(document).on("mousemove.dragAnimal", onAnimalMouseMove);
     $(document).on("mouseup.dragAnimal", onAnimalMouseUp);
@@ -255,23 +256,29 @@ $(document).ready(function () {
     const grid = $("#drag-drop-grid");
 
     if (targetItem.length > 0 && !targetItem.is(draggingAnimal)) {
-      // Nếu tìm thấy và không phải là item đang kéo
-      const targetRect = targetItem[0].getBoundingClientRect(); // Lấy tọa độ của item mục tiêu
+      // --- PHẦN LOGIC MỚI BẰNG INDEX ---
+
+      // Lấy index của placeholder (vị trí nó đang đứng)
+      const placeholderIndex = animalPlaceholder.index();
+
+      // Lấy index của item mục tiêu (nơi chuột đang trỏ vào)
+      const targetIndex = targetItem.index();
 
       animalPlaceholder.css("border", "2px dashed #000"); // Hiển thị border cho placeholder
       animalPlaceholder.css("border-radius", "10px");
 
-      // Xác định xem chuột đang ở nửa trên hay nửa dưới của item
-      const isAfter = e.clientY - targetRect.top > targetRect.height / 2;
-
-      if (isAfter) {
-        // Nếu chuột ở nửa dưới, chèn placeholder VÀO SAU item mục tiêu
+      // So sánh hai index
+      if (placeholderIndex < targetIndex) {
+        // Nếu placeholder đang ở TRƯỚC item mục tiêu, hãy chèn nó VÀO SAU
         targetItem.after(animalPlaceholder);
       } else {
-        // Nếu chuột ở nửa trên, chèn VÀO TRƯỚC item mục tiêu
+        // Ngược lại (placeholder đang ở SAU), hãy chèn nó VÀO TRƯỚC
         targetItem.before(animalPlaceholder);
       }
-    } else if ($(targetElement).is(grid)) {
+    } else if (
+      $(targetElement).is(grid) &&
+      grid.find(animalPlaceholder).length === 0
+    ) {
       // Nếu di chuột vào vùng trống của grid, đặt placeholder ở cuối.
       grid.append(animalPlaceholder);
     }
