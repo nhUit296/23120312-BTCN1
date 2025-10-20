@@ -178,7 +178,7 @@ $(document).ready(function () {
   // ============================== Xử lý reset ==========================
   $("#reset-btn").on("click", () => $processText.html(originalTextContent));
 
-  // ============================= Xử lý add ==========================
+  // ============================= Xử lý add ===========================
   $("#btn-add-new").on("click", function () {
     const selected = $("#animal-select option:selected");
     // Tạo item mới chỉ chứa ký tự emoji
@@ -190,5 +190,6 @@ $(document).ready(function () {
     </div>
       `;
     $("#drag-drop-grid").append(newItemHTML);
+    initDragAndDrop(newItemHTML);
   });
 });
